@@ -46,6 +46,19 @@ class Student{
         newSection.addSectionEnlistment();
     }
 
+
+    void cancelSection(Section enrolledSection){
+        Validate.notNull(enrolledSection);
+
+        if(!this.isEnrolledIn(enrolledSection)){
+            throw new RuntimeException(enrolledSection + " not in sections.");
+        }
+        this.sections.remove(enrolledSection);
+    }
+    Boolean isEnrolledIn(Section enrolledSection){
+        return sections.contains(enrolledSection);
+    }
+
     Collection<Section> getSections() {
         return new ArrayList<>(sections);
     }

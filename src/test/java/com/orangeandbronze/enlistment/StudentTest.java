@@ -68,4 +68,27 @@ public class StudentTest {
         // Then on student2 enlists in the same section, an exception should be thrown
         assertThrows(RuntimeException.class, () -> student2.enlist(sec));
     }
+
+    @Test
+    void cancelling_an_enrolled_section() {
+        Student student = new Student(1);
+        Section sec = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM);
+
+        student.enlist(sec);
+        student.cancelSection(sec);
+        assertAll(
+                () -> assertTrue(student.getSections().isEmpty()),
+                () -> assertEquals(0, student.getSections().size())
+        );
+    }
+    @Test
+    void cancelling_a_section_not_enrolled() {
+        Student student = new Student(1);
+        Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM);
+        Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM);
+
+        student.enlist(sec1);
+        assertThrows(RuntimeException.class, () -> student.cancelSection(sec2));
+    }
+
 }
