@@ -50,7 +50,7 @@ class Section{
 
     public void subtractSectionEnlistment() {
         if(sectionEnlistment == 0) {
-            throw new RuntimeErrorException(null, "currentEnlisted cannot be be negative.");
+            throw new RuntimeErrorException(null, "sectionEnlistment cannot be be negative.");
         }
         sectionEnlistment--;
     }

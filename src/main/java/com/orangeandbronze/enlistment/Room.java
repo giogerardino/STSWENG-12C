@@ -35,4 +35,9 @@ public class Room {
 
         return Objects.equals(roomName, room.roomName);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roomName);
+    }
 }
