@@ -16,4 +16,4 @@
 * [X] A room is identified by its room name, which is alphanumeric
 * [X] A room has a capacity
 * [X] Section enlistment may not exceed the capacity of its room
-* [X] A student may cancel an enlisted section.
+* [X] A student may cancel an enlisted section. 

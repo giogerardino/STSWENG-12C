@@ -58,7 +58,6 @@ class Student{
     Boolean isEnrolledIn(Section enrolledSection){
         return sections.contains(enrolledSection);
     }
-
     Collection<Section> getSections() {
         return new ArrayList<>(sections);
     }

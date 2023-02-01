@@ -89,6 +89,7 @@ public class StudentTest {
 
         student.enlist(sec1);
         assertThrows(RuntimeException.class, () -> student.cancelSection(sec2));
+
     }
 
 }
