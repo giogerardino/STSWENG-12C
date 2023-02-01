@@ -1,4 +1,6 @@
 package com.orangeandbronze.enlistment;
+import org.apache.commons.lang3.Validate;
+
 import java.util.*;
 
 class Student{
@@ -25,11 +27,15 @@ class Student{
     }
 
     /** Enlist a student to a section */
-    void enlist(Section section){
-        if (section == null){
-            throw new NullPointerException();
-        }
-        this.sections.add(section);
+    void enlist(Section newSection){
+        Validate.notNull(newSection);
+        //loop through al current sections, check for same sched
+        sections.forEach(currSection -> {
+            if(currSection.getSchedule().equals(newSection.getSchedule())){
+                throw new RuntimeException("Current section "+currSection+" has the same schedule as new section "+ newSection+ " at schedule " + currSection.getSchedule());
+            }
+        });
+        this.sections.add(newSection);
     }
 
     Collection<Section> getSections() {

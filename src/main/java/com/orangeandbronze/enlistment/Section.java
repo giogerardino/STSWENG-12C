@@ -6,15 +6,23 @@ import static org.apache.commons.lang3.Validate.notBlank;
 
 class Section{
     private final String sectionID;
+    private final Schedule schedule ;
 
     //class constructor
-    Section(String sectionID){
+    Section(String sectionID, Schedule schedule ){
 
         notBlank(sectionID);
         Validate.isTrue(StringUtils.isAlphanumeric(sectionID), "section ID must be AlphaNumeric" + sectionID);
 
         this.sectionID = sectionID;
+        this.schedule = schedule;
     }
+
+    Schedule getSchedule(){
+        Schedule tempSchedule = schedule;
+        return tempSchedule;
+    }
+
     @Override
     public String toString() {
         return sectionID;

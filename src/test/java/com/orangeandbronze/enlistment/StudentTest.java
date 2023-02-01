@@ -11,8 +11,8 @@ public class StudentTest {
                     // pseudocode //
         // Given 1 student and 2 sections w/ no conflict
         Student student = new Student(1, Collections.emptyList());
-        Section sec1 = new Section("A");
-        Section sec2 = new Section("B");
+        Section sec1 = new Section("A", new Schedule(Days.MTH, Period.H1000));
+        Section sec2 = new Section("B", new Schedule(Days.MTH, Period.H0830));
         // When student enlists in both sections
         student.enlist(sec1);
         student.enlist(sec2);
@@ -27,10 +27,11 @@ public class StudentTest {
     void enlist_2_sections_same_schedule() { // negative scenario
         // Given a student and 2 sections with same schedule
         Student student = new Student(1, Collections.emptyList());
-        Section sec1 = new Section("A");
-        Section sec2 = new Section("B");
+        Section sec1 = new Section("A", new Schedule(Days.MTH, Period.H1000));
+        Section sec2 = new Section("B", new Schedule(Days.MTH, Period.H1000));
         // When student enlists in both sections
-
+        student.enlist(sec1);
         // Then on the 2nd enlistment an exception should be thrown
+        assertThrows(Exception.class, () -> student.enlist(sec2));
     }
 }
