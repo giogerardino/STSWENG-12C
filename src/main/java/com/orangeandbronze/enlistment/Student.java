@@ -1,6 +1,8 @@
 package com.orangeandbronze.enlistment;
 import java.util.*;
 
+import org.apache.commons.lang3.Validate;
+
 class Student{
     private final int studentNum;
     private final Collection<Section> sections = new HashSet<>();
@@ -24,12 +26,19 @@ class Student{
 
     }
 
+    //Another constructor
+    Student (int studentNumber) {
+        this(studentNumber, Collections.emptyList());
+    }
+
     /** Enlist a student to a section */
-    void enlist(Section section){
-        if (section == null){
-            throw new NullPointerException();
-        }
-        this.sections.add(section);
+    void enlist(Section newSection){
+        Validate.notNull(newSection);
+
+        // loop through all current sections, check for same sched
+        sections.forEach(currSection -> currSection.checkForConflict(newSection));
+        this.sections.add(newSection);
+
     }
 
     Collection<Section> getSections() {
