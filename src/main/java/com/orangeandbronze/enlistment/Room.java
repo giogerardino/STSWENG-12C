@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import java.util.Objects;
 
-public class Room {
+class Room {
     private final String roomName;
     private final int capacity;
 
