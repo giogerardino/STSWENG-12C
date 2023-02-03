@@ -35,11 +35,6 @@ class Student{
     void enlist(Section newSection){
         Validate.notNull(newSection);
 
-        // check if room of section is at max capacity
-        if (newSection.atCapacity()) {
-            throw new RuntimeException(newSection + " is at max capacity");
-        }
-
         // loop through all current sections, check for same sched
         sections.forEach(currSection -> currSection.checkForConflict(newSection));
         this.sections.add(newSection);
