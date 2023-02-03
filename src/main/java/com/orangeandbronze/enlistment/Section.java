@@ -36,19 +36,21 @@ class Section{
         }
     }
 
-    public int getSectionEnlistment() {
+    int getSectionEnlistment() {
         return sectionEnlistment;
     }
 
-    public boolean atCapacity() {
+    private boolean atCapacity() {
         return sectionEnlistment == room.getCapacity();
     }
 
-    public void addSectionEnlistment() {
+    void addSectionEnlistment() {
+        if(atCapacity())
+            throw new RuntimeErrorException(null, "Setion is at capacity");
         sectionEnlistment++;
     }
 
-    public void subtractSectionEnlistment() {
+    void subtractSectionEnlistment() {
         if(sectionEnlistment == 0) {
             throw new RuntimeErrorException(null, "sectionEnlistment cannot be be negative.");
         }
