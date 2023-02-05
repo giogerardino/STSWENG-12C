@@ -23,7 +23,7 @@ class Room {
 
     @Override
     public String toString() {
-        return "Room" + roomName; // Room ABC
+        return "Room " + roomName; // Room ABC
     }
 
     @Override
