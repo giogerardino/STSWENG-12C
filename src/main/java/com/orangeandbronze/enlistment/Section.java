@@ -57,6 +57,14 @@ class Section{
         }
         sectionEnlistment--;
     }
+    Subject getSubject() {
+        return this.subject;
+    }
+    void checkForSameSubject (Subject OtherSubject) {
+        if(this.subject.equals(OtherSubject)) {
+            throw new IllegalArgumentException("student is already enrolled in this subject: " + OtherSubject);
+        }
+    }
 
     @Override
     public String toString() {

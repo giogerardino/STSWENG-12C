@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.orangeandbronze.enlistment.StudentTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-07T15:34:48" hostname="LAPTOP-UQ7N2M11" time="0.044">
+<testsuite name="com.orangeandbronze.enlistment.StudentTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-08T00:50:21" hostname="LAPTOP-UQ7N2M11" time="0.028">
   <properties/>
-  <testcase name="can_enlist_in_two_section_same_subject()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.044"/>
+  <testcase name="can_enlist_in_two_section_same_subject()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.028"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -37,10 +37,13 @@ class Student{
 
         // loop through all current sections, check for same sched
         sections.forEach(currSection -> currSection.checkForConflict(newSection));
+
+        // check if student is already enlisted in a section with same subject
+        sections.forEach(currSection -> currSection.checkForSameSubject(newSection.getSubject()));
+
         this.sections.add(newSection);
         newSection.addSectionEnlistment();
     }
-
 
     void cancelSection(Section enrolledSection){
         Validate.notNull(enrolledSection);
@@ -56,6 +59,10 @@ class Student{
     Collection<Section> getSections() {
         return new ArrayList<>(sections);
     }
+    // di ko makuha yung subjects HAHAH 
+//    Collection<Section> getSubjects() {
+//        return new ArrayList<>(sections.get);
+//    }
 
     @Override
     public String toString() {

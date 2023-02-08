@@ -123,11 +123,11 @@ public class StudentTest {
         Subject subject1 = new Subject("ABC123", 3, false);
         Subject subject2 = new Subject("ABC123", 3, false);
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
-        Section sec2 = new Section("B", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject2);
+        Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subject2);
         // When student enlists in a section of a certain subject
         student.enlist(sec1);
         // Then the student should NOT be able to enlist in another section with the same subject
-        assertThrows(RuntimeException.class, () -> student.enlist(sec2));
+        assertThrows(IllegalArgumentException.class, () -> student.enlist(sec2));
     }
 
 }
