@@ -25,9 +25,9 @@
 ---
 
 * [X] All Iteration 1 requirements
-* [ ] A section has a subject.
+* [X] A section has a subject.
 * [X] A subject is identified by its alphanumeric Subject ID.
-* [ ] A student cannot enlist in two sections with the same subject.
+* [X] A student cannot enlist in two sections with the same subject.
 * [ ] A subject may or may not have one or more prerequisite subjects.
 * [ ] A student may not enlist in a section if the student has not yet taken the prerequisite subjects.
 * [X] Each subject has a corresponding number of units.

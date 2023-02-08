@@ -10,9 +10,10 @@ class Section{
     private final Schedule schedule;
     private final Room room;
     private int sectionEnlistment = 0;
+    private final Subject subject;
 
     //class constructor
-    Section(String sectionID, Schedule schedule, Room room){
+    Section(String sectionID, Schedule schedule, Room room, Subject subject) {
 
         Validate.notBlank(sectionID);
         Validate.isTrue(StringUtils.isAlphanumeric(sectionID), "section ID must be AlphaNumeric" + sectionID);
@@ -22,6 +23,7 @@ class Section{
         this.sectionID = sectionID;
         this.schedule = schedule;
         this.room = room;
+        this.subject = subject;
     }
 
     boolean hasConflict (Section other) {
@@ -39,14 +41,13 @@ class Section{
     int getSectionEnlistment() {
         return sectionEnlistment;
     }
-
     private boolean atCapacity() {
         return sectionEnlistment == room.getCapacity();
     }
 
     void addSectionEnlistment() {
         if(atCapacity())
-            throw new RuntimeErrorException(null, "Setion is at capacity");
+            throw new RuntimeErrorException(null, "Section is at capacity");
         sectionEnlistment++;
     }
 

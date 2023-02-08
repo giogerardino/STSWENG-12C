@@ -12,7 +12,7 @@ class Subject {
 
     Subject (String subjectId, int units, boolean isLab) {
         Validate.notNull(subjectId);
-        Validate.isTrue(StringUtils.isAlphanumeric(subjectId), "Room Name must be AlphaNumeric, was " + roomName);
+        Validate.isTrue(StringUtils.isAlphanumeric(subjectId), "Subject Id must be AlphaNumeric, was " + subjectId);
         Validate.notNull(units);
         Validate.notNull(isLab);
 
