@@ -1,5 +1,6 @@
 package com.orangeandbronze.enlistment;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import javax.management.RuntimeErrorException;
 import org.apache.commons.lang3.StringUtils;
@@ -57,9 +58,21 @@ class Section{
         }
         sectionEnlistment--;
     }
+
     Subject getSubject() {
         return this.subject;
     }
+
+    void checkAllPreRequisitesTaken() {
+        ArrayList<Subject> preReqs = (ArrayList<Subject>) subject.getPreRequisites();
+
+        // If at least one of the prereqs weren't taken yet
+        for (int i = 0; i < preReqs.size(); i++) 
+            if (!preReqs.get(i).isTaken()){
+                throw new RuntimeErrorException(null, "1 prerequisite has not been taken yet: " + preReqs.get(i));
+            }
+    }
+
     void checkForSameSubject (Subject OtherSubject) {
         if(this.subject.equals(OtherSubject)) {
             throw new IllegalArgumentException("student is already enrolled in this subject: " + OtherSubject);

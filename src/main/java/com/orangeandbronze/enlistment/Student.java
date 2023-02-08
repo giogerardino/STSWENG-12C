@@ -41,6 +41,9 @@ class Student{
         // check if student is already enlisted in a section with same subject
         sections.forEach(currSection -> currSection.checkForSameSubject(newSection.getSubject()));
 
+        // check if all pre requisites are taken
+        sections.forEach(currSection -> currSection.checkAllPreRequisitesTaken());
+        
         this.sections.add(newSection);
         newSection.addSectionEnlistment();
     }
@@ -53,16 +56,15 @@ class Student{
         }
         this.sections.remove(enrolledSection);
     }
+
     Boolean isEnrolledIn(Section enrolledSection){
         return sections.contains(enrolledSection);
     }
+    
     Collection<Section> getSections() {
         return new ArrayList<>(sections);
     }
-    // di ko makuha yung subjects HAHAH 
-//    Collection<Section> getSubjects() {
-//        return new ArrayList<>(sections.get);
-//    }
+    
 
     @Override
     public String toString() {
