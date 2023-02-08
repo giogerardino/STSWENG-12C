@@ -60,6 +60,13 @@ class Student{
     Boolean isEnrolledIn(Section enrolledSection){
         return sections.contains(enrolledSection);
     }
+
+    //TODO
+    Double requestAssessment () {
+        Double totalAssessment = 0.0;
+
+        return totalAssessment;
+    }
     
     Collection<Section> getSections() {
         return new ArrayList<>(sections);
