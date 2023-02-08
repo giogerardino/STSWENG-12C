@@ -218,6 +218,27 @@ public class StudentTest {
     }
 
     @Test
+    void can_enlist_in_subject_with_no_prerequisites (){
+        // Given a student enlisting in 1 section (with its subject having prerequisites)
+        Student student = new Student(1);
+
+        // New subjects
+        Subject subject1 = new Subject("ABC123", 3, false, false);
+
+        Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
+
+        // When student enlists in a section of a certain subject with TAKEN prerequisites
+        student.enlist(sec1);
+
+        // Then the student SHOULD be able to enlist in the section
+        Collection<Section> sections = student.getSections();
+        assertAll(
+                () -> assertTrue(sections.containsAll(List.of(sec1))),
+                () -> assertEquals(1, sections.size())
+        );
+    }
+
+    @Test
     void enlist_in_subject_with_not_taken_prerequisites (){ //negative scenario
         // Given a student enlisting in 1 section (with its subject having prerequisites)
         Student student = new Student(1);
