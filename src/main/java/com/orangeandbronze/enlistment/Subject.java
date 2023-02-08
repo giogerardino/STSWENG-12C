@@ -9,8 +9,9 @@ class Subject {
     private final String subjectId;
     private final int units;
     private final boolean isLab;
+    private final boolean isPreReq;
 
-    Subject (String subjectId, int units, boolean isLab) {
+    Subject (String subjectId, int units, boolean isLab, boolean isPreReq) {
         Validate.notNull(subjectId);
         Validate.isTrue(StringUtils.isAlphanumeric(subjectId), "Subject Id must be AlphaNumeric, was " + subjectId);
         Validate.notNull(units);
@@ -19,6 +20,7 @@ class Subject {
         this.subjectId = subjectId;
         this.units = units;
         this.isLab = isLab;
+        this.isPreReq = isPreReq;
     }
 
     @Override
