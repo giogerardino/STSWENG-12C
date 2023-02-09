@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Assessment {
+class Assessment {
     private final double UNIT_COST=2000;
     private final double LAB_FEE=1000;
     private final double MISC_FEES=3000;
