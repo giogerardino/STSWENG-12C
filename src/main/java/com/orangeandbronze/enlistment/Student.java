@@ -64,17 +64,17 @@ class Student{
     //TODO
     Double requestAssessment () {
         Double totalAssessment = 0.0;
-        Double subjectPriceComputation = 0.0;
+        Double subjectPrice = 0.0;
         Double valueAddedTax;
 
         for (Section section: sections){
 
-            subjectPriceComputation = 2000.0*section.getSubject().getUnits();
+            subjectPrice = 2000.0*section.getSubject().getUnits();
             if(section.getSubject().isLab() == true){
-                subjectPriceComputation+=1000.0;
+                subjectPrice+=1000.0;
             }
 
-            totalAssessment+=subjectPriceComputation;
+            totalAssessment+=subjectPrice;
         }
 
         valueAddedTax = totalAssessment*0.12;
