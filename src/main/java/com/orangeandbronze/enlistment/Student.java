@@ -77,8 +77,8 @@ class Student{
             totalAssessment+=subjectPrice;
         }
 
-        valueAddedTax = totalAssessment*0.12;
         totalAssessment+=3000.0;
+        valueAddedTax = totalAssessment*0.12;
         //idk if you add the VAT or you just compute it and show the value in the assessment like usually in receipts so change it if needed
         totalAssessment+=valueAddedTax;
         return totalAssessment;
