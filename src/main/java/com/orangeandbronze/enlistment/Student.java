@@ -63,25 +63,8 @@ class Student{
 
     //TODO
     Double requestAssessment () {
-        Double totalAssessment = 0.0;
-        Double subjectPrice = 0.0;
-        Double valueAddedTax;
-
-        for (Section section: sections){
-
-            subjectPrice = 2000.0*section.getSubject().getUnits();
-            if(section.getSubject().isLab() == true){
-                subjectPrice+=1000.0;
-            }
-
-            totalAssessment+=subjectPrice;
-        }
-
-        totalAssessment+=3000.0;
-        valueAddedTax = totalAssessment*0.12;
-        //idk if you add the VAT or you just compute it and show the value in the assessment like usually in receipts so change it if needed
-        totalAssessment+=valueAddedTax;
-        return totalAssessment;
+        Assessment studentAssessment = new Assessment(this.sections);
+        return studentAssessment.getAssessment();
     }
     
     Collection<Section> getSections() {
