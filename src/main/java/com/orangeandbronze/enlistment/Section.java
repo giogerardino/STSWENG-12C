@@ -20,6 +20,7 @@ class Section{
         Validate.isTrue(StringUtils.isAlphanumeric(sectionID), "section ID must be AlphaNumeric" + sectionID);
         Validate.notNull(schedule);
         Validate.notNull(room);
+        Validate.notNull(subject);
 
         this.sectionID = sectionID;
         this.schedule = schedule;
