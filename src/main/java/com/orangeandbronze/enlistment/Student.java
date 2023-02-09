@@ -64,7 +64,23 @@ class Student{
     //TODO
     Double requestAssessment () {
         Double totalAssessment = 0.0;
+        Double subjectPriceComputation = 0.0;
+        Double valueAddedTax;
 
+        for (Section section: sections){
+
+            subjectPriceComputation = 2000.0*section.getSubject().getUnits();
+            if(section.getSubject().isLab() == true){
+                subjectPriceComputation+=1000.0;
+            }
+
+            totalAssessment+=subjectPriceComputation;
+        }
+
+        valueAddedTax = totalAssessment*0.12;
+        totalAssessment+=3000.0;
+        //idk if you add the VAT or you just compute it and show the value in the assessment like usually in receipts so change it if needed
+        totalAssessment+=valueAddedTax;
         return totalAssessment;
     }
     

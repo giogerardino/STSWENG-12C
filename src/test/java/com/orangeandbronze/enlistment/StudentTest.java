@@ -259,4 +259,25 @@ public class StudentTest {
         assertThrows(RuntimeException.class, () -> student.enlist(sec1));
     }
 
+    @Test
+    void request_assessment(){
+        /* Example assessment:
+         * Student enrolls Subjects A, B and C:
+         * Subject A - 3 Units
+         * Subject B - 2 Units
+         * Subject C - 2 Units, but with lab
+         *
+         * 2000.00 per unit, additional 1000.00 if lab:
+         * Subject A: 6000.00
+         * Subject B: 4000.00
+         * Subject C: 5000.00
+         * total: ₱15000.00
+         * +3000.00 misc. fees = 18000.00
+         * 12% VAT = ₱2160.00
+         *
+         * Expected Total Amount including VAT: ₱20,160.00
+         */
+
+    }
+
 }

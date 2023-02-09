@@ -40,8 +40,13 @@ class Subject {
         return isTaken;
     }
 
+    Boolean isLab () { return isLab; }
+
     Collection<Subject> getPreRequisites() {
         return new ArrayList<>(preReqSubjects);
+    }
+    int getUnits() {
+        return units;
     }
 
     @Override
