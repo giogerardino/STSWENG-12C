@@ -45,7 +45,7 @@
 
 #### Additional Requirements
 
-* [ ] A student cannot enlist in more than 24 units.
+* [X] A student cannot enlist in more than 24 units.
 * [ ] No two sections can share the same room if their schedules overlap.
 * [ ] A student belongs to a degree program.
 * [ ] A degree program is a collection of subjects that a student may take.
