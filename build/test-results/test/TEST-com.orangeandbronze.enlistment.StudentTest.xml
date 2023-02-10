@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.orangeandbronze.enlistment.StudentTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-08T00:50:21" hostname="LAPTOP-UQ7N2M11" time="0.028">
+<testsuite name="com.orangeandbronze.enlistment.StudentTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2023-02-10T10:14:27" hostname="DESKTOP-4UCV2OP" time="0.104">
   <properties/>
-  <testcase name="can_enlist_in_two_section_same_subject()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.028"/>
+  <testcase name="can_enlist_in_subject_with_no_prerequisites()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.045"/>
+  <testcase name="cancelling_a_section_not_enrolled()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.003"/>
+  <testcase name="enlist_2_sections_same_schedule()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.012"/>
+  <testcase name="can_enlist_in_subject_with_taken_prerequisites()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.002"/>
+  <testcase name="enlist_in_subject_with_not_taken_prerequisites()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.002"/>
+  <testcase name="enlist_2_sections_no_conflict()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.002"/>
+  <testcase name="cancelling_an_enrolled_section()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.002"/>
+  <testcase name="enlist_section_not_at_room_capacity()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.003"/>
+  <testcase name="can_enlist_in_two_section_not_same_subject()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.002"/>
+  <testcase name="can_enlist_in_two_section_same_subject()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.002"/>
+  <testcase name="enlist_section_at_room_capacity()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.003"/>
+  <testcase name="request_assessment()" classname="com.orangeandbronze.enlistment.StudentTest" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -280,6 +280,36 @@ public class StudentTest {
 
     @Test
     void request_assessment(){
+        Student student = new Student(1);
+
+        Subject prereq1 = new Subject("CSSWENG", 3, false);
+        Subject prereq2 = new Subject("CCPROG3", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
+
+        Subject nonLabSubject1 = new Subject("STSWENG", 3, false, Set.of(prereq1, prereq2));
+        Subject nonLabSubject2 = new Subject("STADVDB", 2, false, Set.of(prereq1, prereq2));
+        Subject labSubject = new Subject("LBSWENG", 2, true, Set.of(prereq1, prereq2));
+
+        Section STSWENGS12 = new Section("2401", DEFAULT_SCHEDULE, DEFAULT_ROOM, nonLabSubject1);
+        Section STADVDBS12 = new Section("2501", new Schedule(MTH, H1600), new Room("GK304A", 45), nonLabSubject2);
+        Section LBSWENGS12 = new Section("2601", new Schedule(MTH, H0830), new Room("A1109", 45), labSubject);
+
+        student.enlist(STSWENGS12);
+        student.enlist(STADVDBS12);
+        student.enlist(LBSWENGS12);
+
+        Collection<Section> sections = student.getSections();
+
+        double studentAssessment = student.requestAssessment();
+
+        assertAll(
+                () -> assertTrue(sections.containsAll(List.of(STSWENGS12, STADVDBS12, LBSWENGS12))),
+                () -> assertEquals(3, sections.size()),
+                () -> assertEquals(20160, studentAssessment)
+        );
+
+
         /* Example assessment:
          * Student enrolls Subjects A, B and C:
          * Subject A - 3 Units

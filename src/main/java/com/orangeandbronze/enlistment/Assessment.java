@@ -24,9 +24,10 @@ class Assessment {
             this.totalAssessment += s.getSubject().getUnits() * UNIT_COST;
             if(s.getSubject().isLab())
                 this.totalAssessment += LAB_FEE;
-            this.totalAssessment += MISC_FEES;
-            this.totalAssessment += this.totalAssessment * VAT;
         }
+
+        this.totalAssessment += MISC_FEES;
+        this.totalAssessment += this.totalAssessment * VAT;
     }
 
     Double getAssessment(){return this.totalAssessment;}
