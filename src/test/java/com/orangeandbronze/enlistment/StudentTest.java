@@ -22,8 +22,8 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
-        Subject subject2 = new Subject("ABC234", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
+        Subject subject2 = new Subject("ABC234", 3, false, Set.of(prereq1, prereq2));
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
         Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM,subject2);
@@ -49,8 +49,8 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
-        Subject subject2 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
+        Subject subject2 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
         Section sec2 = new Section("B", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject2);
@@ -73,7 +73,7 @@ public class StudentTest {
         student2.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
 
         Section sec = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject);
         // When student1 enlists in the section
@@ -101,7 +101,7 @@ public class StudentTest {
         student2.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
 
         Section sec = new Section("A", DEFAULT_SCHEDULE, new Room("A1705", 1), subject);
         // When student1 enlists in the section
@@ -120,7 +120,7 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
         
         Section sec = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject);
 
@@ -141,7 +141,7 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
        
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject);
         Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subject);
@@ -163,8 +163,8 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
-        Subject subject2 = new Subject("ABC456", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
+        Subject subject2 = new Subject("ABC456", 3, false, Set.of(prereq1, prereq2));
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
         Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subject2);
@@ -192,8 +192,8 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
-        Subject subject2 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
+        Subject subject2 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
         Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subject2);
@@ -217,8 +217,8 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
-        Subject subject2 = new Subject("ABC234", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
+        Subject subject2 = new Subject("ABC234", 3, false, Set.of(prereq1, prereq2));
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
         Section sec2 = new Section("A", new Schedule(MTH, H0830), DEFAULT_ROOM, subject2);
@@ -267,7 +267,7 @@ public class StudentTest {
         student.addSubjectTaken(prereq2);
 
         // New subjects
-        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
+        Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
         
