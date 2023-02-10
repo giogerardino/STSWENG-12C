@@ -7,7 +7,7 @@ import org.apache.commons.lang3.Validate;
 class Student{
     private final int studentNum;
     private final Collection<Section> sections = new HashSet<>();
-    private final Collection<Subject> subjectsTaken = new HashSet<>();
+    private Collection<Subject> subjectsTaken;
 
     //class constructor
     Student(int studentNum, Collection<Section> sections, Collection<Subject> subjectsTaken){
@@ -25,8 +25,11 @@ class Student{
         this.studentNum = studentNum;
         this.sections.addAll(sections);
         this.sections.removeIf(Objects::isNull);
-        this.subjectsTaken.addAll(subjectsTaken);
-        this.subjectsTaken.removeIf(Objects::isNull);
+
+        Collection<Subject> subjectsTakenModifiable = new HashSet<>();
+        subjectsTakenModifiable.addAll(subjectsTaken);
+        subjectsTakenModifiable.removeIf(Objects::isNull);
+        this.subjectsTaken = Collections.unmodifiableCollection(subjectsTakenModifiable);
 
     }
 
@@ -61,11 +64,6 @@ class Student{
         this.sections.remove(enrolledSection);
     }
 
-    void addSubjectTaken(Subject subjectTaken){
-        Validate.notNull(subjectTaken);
-        this.subjectsTaken.add(subjectTaken);
-    }
-
     Boolean isEnrolledIn(Section enrolledSection){
         return sections.contains(enrolledSection);
     }
@@ -74,7 +72,6 @@ class Student{
         return subjectsTaken.contains(subjectToEnroll);
     }
 
-    //TODO
     BigDecimal requestAssessment () {
         Assessment studentAssessment = new Assessment(this.sections);
         return studentAssessment.getAssessment();

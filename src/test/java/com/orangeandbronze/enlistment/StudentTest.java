@@ -14,14 +14,12 @@ public class StudentTest {
     @Test
     void enlist_2_sections_no_conflict() { // happy scenario
                     // pseudocode //
-        // Given 1 student and 2 sections w/ no conflict
-        Student student = new Student(1);
-        
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        // Given 1 student and 2 sections w/ no conflict
+        Student student = new Student(1, Set.of(), Set.of(prereq1,prereq2));
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -41,14 +39,12 @@ public class StudentTest {
     }
     @Test // not an actual method. only junit calls it a method
     void enlist_2_sections_same_schedule() { // negative scenario
-        // Given a student and 2 sections with same schedule
-        Student student = new Student(1);
-
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        // Given a student and 2 sections with same schedule
+        Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2));
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -64,15 +60,13 @@ public class StudentTest {
 
     @Test
     void enlist_section_not_at_room_capacity() { // positive scenario
-        // Given 2 students and a section with a room capacity of 1
-        Student student1 = new Student(1);
-        Student student2 = new Student(2);
-        
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student1.addSubjectTaken(prereq1);
-        student2.addSubjectTaken(prereq2);
+
+        // Given 2 students and a section with a room capacity of 1
+        Student student1 = new Student(1, Set.of(), Set.of(prereq1, prereq2));
+        Student student2 = new Student(2, Set.of(), Set.of(prereq1, prereq2));
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -92,15 +86,13 @@ public class StudentTest {
     }
     @Test
     void enlist_section_at_room_capacity() { // negative scenario
-        // Given 2 students and a section with a room capacity of 1
-        Student student1 = new Student(1);
-        Student student2 = new Student(2);
-
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student1.addSubjectTaken(prereq1);
-        student2.addSubjectTaken(prereq2);
+
+        // Given 2 students and a section with a room capacity of 1
+        Student student1 = new Student(1, Set.of(), Set.of(prereq1, prereq2));
+        Student student2 = new Student(2, Set.of(), Set.of(prereq1, prereq2));
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -114,12 +106,11 @@ public class StudentTest {
 
     @Test
     void cancelling_an_enrolled_section() {
-        Student student = new Student(1);
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2));
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -135,12 +126,12 @@ public class StudentTest {
     }
     @Test
     void cancelling_a_section_not_enrolled() {
-        Student student = new Student(1);
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        Student student = new Student(1, Set.of(), Set.of(prereq1,prereq2));
+
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -155,14 +146,12 @@ public class StudentTest {
 
     @Test
     void can_enlist_in_two_section_not_same_subject() { // positive scenario
-        // Given a student enlisting in 2 sections of DIFFERENT SUBJECTS
-        Student student = new Student(1);
-        
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        // Given a student enlisting in 2 sections of DIFFERENT SUBJECTS
+        Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2));
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -184,14 +173,12 @@ public class StudentTest {
     }
     @Test
     void can_enlist_in_two_section_same_subject() { // negative scenario
-        // Given a student enlisting in 2 sections of SAME SUBJECTS
-        Student student = new Student(1);
-
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        // Given a student enlisting in 2 sections of SAME SUBJECTS
+        Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2));
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -209,14 +196,12 @@ public class StudentTest {
 
     @Test
     void can_enlist_in_subject_with_taken_prerequisites (){
-        // Given a student enlisting in 1 section (with its subject having prerequisites)
-        Student student = new Student(1);
-
         // Taken prerequisite subjects
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        // Given a student enlisting in 1 section (with its subject having prerequisites)
+        Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2));
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -260,13 +245,11 @@ public class StudentTest {
 
     @Test
     void enlist_in_subject_with_not_taken_prerequisites (){ //negative scenario
-        // Given a student enlisting in 1 section (with its subject having prerequisites)
-        Student student = new Student(1);
-
         // Prereq1 not taken, Prereq2 taken
         Subject prereq1 = new Subject("PREREQ1", 3, false);
         Subject prereq2 = new Subject("PREREQ2", 3, false);
-        student.addSubjectTaken(prereq2);
+
+        Student student = new Student(1, Set.of(), Set.of(prereq1));
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
@@ -282,12 +265,10 @@ public class StudentTest {
 
     @Test
     void request_assessment(){
-        Student student = new Student(1);
-
         Subject prereq1 = new Subject("CSSWENG", 3, false);
         Subject prereq2 = new Subject("CCPROG3", 3, false);
-        student.addSubjectTaken(prereq1);
-        student.addSubjectTaken(prereq2);
+
+        Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2));
 
         Subject nonLabSubject1 = new Subject("STSWENG", 3, false, Set.of(prereq1, prereq2));
         Subject nonLabSubject2 = new Subject("STADVDB", 2, false, Set.of(prereq1, prereq2));

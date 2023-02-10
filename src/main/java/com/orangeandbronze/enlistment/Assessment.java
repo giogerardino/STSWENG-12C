@@ -9,7 +9,8 @@ class Assessment {
     private final BigDecimal UNIT_COST= BigDecimal.valueOf(2000);
     private final BigDecimal LAB_FEE = BigDecimal.valueOf(1000);
     private final BigDecimal MISC_FEES = BigDecimal.valueOf(3000);
-    private final BigDecimal VAT = BigDecimal.valueOf(0.12);
+    private final BigDecimal VAT = new BigDecimal("0.12");
+    // TODO: Research how to tell bigdecimal no. of decimal places; double check if valueOf() is best way to do it
 
     private final Collection<Section> sections = new HashSet<>();
     private BigDecimal totalAssessment = new BigDecimal(0);
