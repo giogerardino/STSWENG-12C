@@ -1,17 +1,18 @@
 package com.orangeandbronze.enlistment;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
 class Assessment {
-    private final double UNIT_COST=2000;
-    private final double LAB_FEE=1000;
-    private final double MISC_FEES=3000;
-    private final double VAT =0.12;
+    private final BigDecimal UNIT_COST= BigDecimal.valueOf(2000);
+    private final BigDecimal LAB_FEE = BigDecimal.valueOf(1000);
+    private final BigDecimal MISC_FEES = BigDecimal.valueOf(3000);
+    private final BigDecimal VAT = BigDecimal.valueOf(0.12);
 
     private final Collection<Section> sections = new HashSet<>();
-    private double totalAssessment;
+    private BigDecimal totalAssessment = new BigDecimal(0);
 
     Assessment(Collection<Section> sections){
         if(sections == null){
@@ -21,14 +22,14 @@ class Assessment {
         this.sections.removeIf(Objects::isNull);
 
         for (Section s:this.sections){
-            this.totalAssessment += s.getSubject().getUnits() * UNIT_COST;
+            this.totalAssessment = this.totalAssessment.add(UNIT_COST.multiply(BigDecimal.valueOf(s.getSubject().getUnits())));
             if(s.getSubject().isLab())
-                this.totalAssessment += LAB_FEE;
+                this.totalAssessment = this.totalAssessment.add(LAB_FEE);
         }
 
-        this.totalAssessment += MISC_FEES;
-        this.totalAssessment += this.totalAssessment * VAT;
+        this.totalAssessment = this.totalAssessment.add(MISC_FEES);
+        this.totalAssessment = this.totalAssessment.add(this.totalAssessment.multiply(VAT));
     }
 
-    Double getAssessment(){return this.totalAssessment;}
+    BigDecimal getAssessment(){return this.totalAssessment;}
 }

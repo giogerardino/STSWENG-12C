@@ -1,4 +1,5 @@
 package com.orangeandbronze.enlistment;
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.apache.commons.lang3.Validate;
@@ -74,7 +75,7 @@ class Student{
     }
 
     //TODO
-    Double requestAssessment () {
+    BigDecimal requestAssessment () {
         Assessment studentAssessment = new Assessment(this.sections);
         return studentAssessment.getAssessment();
     }

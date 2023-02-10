@@ -1,5 +1,7 @@
 package com.orangeandbronze.enlistment;
 import org.junit.jupiter.api.*;
+
+import java.math.BigDecimal;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static com.orangeandbronze.enlistment.Period.*;
@@ -301,12 +303,12 @@ public class StudentTest {
 
         Collection<Section> sections = student.getSections();
 
-        double studentAssessment = student.requestAssessment();
+        BigDecimal studentAssessment = student.requestAssessment().stripTrailingZeros();
 
         assertAll(
                 () -> assertTrue(sections.containsAll(List.of(STSWENGS12, STADVDBS12, LBSWENGS12))),
                 () -> assertEquals(3, sections.size()),
-                () -> assertEquals(20160, studentAssessment)
+                () -> assertEquals(BigDecimal.valueOf(20160).stripTrailingZeros(), studentAssessment)
         );
 
 
