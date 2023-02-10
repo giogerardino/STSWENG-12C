@@ -312,4 +312,24 @@ public class StudentTest {
 
     }
 
+    @Test
+    void enlist_with_overload(){
+        // Prereq1 not taken, Prereq2 taken
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+
+        // Other subject/section in cart
+        Subject subject1 = new Subject("SUBJECT1", 23, false, Set.of());
+        Section sec1 = new Section("Z", new Schedule(WS, H1600), new Room("A1901", 45), subject1);
+
+        Student student = new Student(1, Set.of(sec1), Set.of(prereq1, prereq2));
+
+        // New subjects
+        Subject subject2 = new Subject("SUBJECT2", 3, false, Set.of(prereq1, prereq2));
+        Section sec2 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject2);
+
+        // Then the student SHOULD NOT be able to enlist in the section
+        assertThrows(RuntimeException.class, () -> student.enlist(sec2));
+    }
+
 }

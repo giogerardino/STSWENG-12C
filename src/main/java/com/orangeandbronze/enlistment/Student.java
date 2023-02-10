@@ -7,7 +7,9 @@ import org.apache.commons.lang3.Validate;
 class Student{
     private final int studentNum;
     private final Collection<Section> sections = new HashSet<>();
-    private Collection<Subject> subjectsTaken;
+    private final Collection<Subject> subjectsTaken;
+
+    private final double MAX_UNITS = 24.0;
 
     //class constructor
     Student(int studentNum, Collection<Section> sections, Collection<Subject> subjectsTaken){
@@ -48,8 +50,12 @@ class Student{
         // check if student is already enlisted in a section with same subject
         sections.forEach(currSection -> currSection.checkForSameSubject(newSection.getSubject()));
 
-        // check if all pre requisites are taken
+        // check if all pre-requisites are taken
         sections.forEach(currSection -> currSection.checkAllPreRequisitesTaken(this));
+
+        if (this.willOverload(newSection.getSubject().getUnits())) {
+            throw new RuntimeException("Student cannot enroll in " + newSection + " as they will exceed 24.0 units.");
+        }
         
         this.sections.add(newSection);
         newSection.addSectionEnlistment();
@@ -62,6 +68,16 @@ class Student{
             throw new RuntimeException(enrolledSection + " not in sections.");
         }
         this.sections.remove(enrolledSection);
+    }
+
+    Boolean willOverload(float currentSectionUnits){
+        float unitsToTake = currentSectionUnits;
+
+        for (Section s: this.sections){
+            unitsToTake += s.getSubject().getUnits();
+        }
+
+        return (unitsToTake >= MAX_UNITS);
     }
 
     Boolean isEnrolledIn(Section enrolledSection){
