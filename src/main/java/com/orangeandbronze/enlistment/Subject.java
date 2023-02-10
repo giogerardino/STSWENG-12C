@@ -12,10 +12,10 @@ import org.apache.commons.lang3.Validate;
 class Subject {
     private final String subjectId;
     private final Collection<Subject> preReqSubjects = new HashSet<>();
-    private final int units;
+    private final float units;
     private final boolean isLab;
 
-    Subject (String subjectId, int units, boolean isLab, Collection<Subject> preReqSubjects) {
+    Subject (String subjectId, float units, boolean isLab, Collection<Subject> preReqSubjects) {
         Validate.notNull(subjectId);
         Validate.isTrue(StringUtils.isAlphanumeric(subjectId), "Subject Id must be AlphaNumeric, was " + subjectId);
         Validate.notNull(units);
@@ -29,7 +29,7 @@ class Subject {
         this.preReqSubjects.removeIf(Objects::isNull);
     }
 
-    Subject (String subjectId, int units, boolean isLab) {
+    Subject (String subjectId, float units, boolean isLab) {
         this(subjectId, units, isLab, Collections.emptyList());
     }
 
@@ -39,7 +39,7 @@ class Subject {
         return new ArrayList<>(preReqSubjects);
     }
     //TODO Change units to floating point
-    int getUnits() {
+    Float getUnits() {
         return units;
     }
 
