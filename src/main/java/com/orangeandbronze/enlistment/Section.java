@@ -64,12 +64,12 @@ class Section{
         return this.subject;
     }
 
-    void checkAllPreRequisitesTaken() {
+    void checkAllPreRequisitesTaken(Student student) {
         ArrayList<Subject> preReqs = (ArrayList<Subject>) subject.getPreRequisites();
 
         // If at least one of the prereqs weren't taken yet
-        for (int i = 0; i < preReqs.size(); i++) 
-            if (!preReqs.get(i).isTaken()){
+        for (int i = 0; i < preReqs.size(); i++)
+            if (!student.hasTakenSubject(preReqs.get(i))){
                 throw new RuntimeErrorException(null, "1 prerequisite has not been taken yet: " + preReqs.get(i));
             }
     }

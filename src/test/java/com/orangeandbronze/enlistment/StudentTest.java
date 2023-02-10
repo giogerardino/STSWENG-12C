@@ -16,8 +16,10 @@ public class StudentTest {
         Student student = new Student(1);
         
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -41,8 +43,10 @@ public class StudentTest {
         Student student = new Student(1);
 
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -63,8 +67,10 @@ public class StudentTest {
         Student student2 = new Student(2);
         
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student1.addSubjectTaken(prereq1);
+        student2.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -89,8 +95,10 @@ public class StudentTest {
         Student student2 = new Student(2);
 
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student1.addSubjectTaken(prereq1);
+        student2.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -106,8 +114,10 @@ public class StudentTest {
     void cancelling_an_enrolled_section() {
         Student student = new Student(1);
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -125,8 +135,10 @@ public class StudentTest {
     void cancelling_a_section_not_enrolled() {
         Student student = new Student(1);
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -145,8 +157,10 @@ public class StudentTest {
         Student student = new Student(1);
         
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -172,8 +186,10 @@ public class StudentTest {
         Student student = new Student(1);
 
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -195,8 +211,10 @@ public class StudentTest {
         Student student = new Student(1);
 
         // Taken prerequisite subjects
-        Subject prereq1 = new Subject("PREREQ1", 3, false, true);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq1);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);
@@ -223,7 +241,7 @@ public class StudentTest {
         Student student = new Student(1);
 
         // New subjects
-        Subject subject1 = new Subject("ABC123", 3, false, false);
+        Subject subject1 = new Subject("ABC123", 3, false);
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
 
@@ -243,9 +261,10 @@ public class StudentTest {
         // Given a student enlisting in 1 section (with its subject having prerequisites)
         Student student = new Student(1);
 
-        // Prere1 not taken, Prereq2 taken
-        Subject prereq1 = new Subject("PREREQ1", 3, false, false);
-        Subject prereq2 = new Subject("PREREQ2", 3, false, true);
+        // Prereq1 not taken, Prereq2 taken
+        Subject prereq1 = new Subject("PREREQ1", 3, false);
+        Subject prereq2 = new Subject("PREREQ2", 3, false);
+        student.addSubjectTaken(prereq2);
 
         // New subjects
         Subject subject1 = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2), false);

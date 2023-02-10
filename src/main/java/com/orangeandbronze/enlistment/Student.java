@@ -6,9 +6,10 @@ import org.apache.commons.lang3.Validate;
 class Student{
     private final int studentNum;
     private final Collection<Section> sections = new HashSet<>();
+    private final Collection<Subject> subjectsTaken = new HashSet<>();
 
     //class constructor
-    Student(int studentNum, Collection<Section> sections){
+    Student(int studentNum, Collection<Section> sections, Collection<Subject> subjectsTaken){
 
         if(studentNum < 0){
             throw new IllegalArgumentException(
@@ -23,12 +24,14 @@ class Student{
         this.studentNum = studentNum;
         this.sections.addAll(sections);
         this.sections.removeIf(Objects::isNull);
+        this.subjectsTaken.addAll(subjectsTaken);
+        this.subjectsTaken.removeIf(Objects::isNull);
 
     }
 
     //Another constructor
     Student (int studentNumber) {
-        this(studentNumber, Collections.emptyList());
+        this(studentNumber, Collections.emptyList(), Collections.emptyList());
     }
 
     /** Enlist a student to a section */
@@ -42,7 +45,7 @@ class Student{
         sections.forEach(currSection -> currSection.checkForSameSubject(newSection.getSubject()));
 
         // check if all pre requisites are taken
-        sections.forEach(currSection -> currSection.checkAllPreRequisitesTaken());
+        sections.forEach(currSection -> currSection.checkAllPreRequisitesTaken(this));
         
         this.sections.add(newSection);
         newSection.addSectionEnlistment();
@@ -57,8 +60,17 @@ class Student{
         this.sections.remove(enrolledSection);
     }
 
+    void addSubjectTaken(Subject subjectTaken){
+        Validate.notNull(subjectTaken);
+        this.subjectsTaken.add(subjectTaken);
+    }
+
     Boolean isEnrolledIn(Section enrolledSection){
         return sections.contains(enrolledSection);
+    }
+
+    Boolean hasTakenSubject(Subject subjectToEnroll) {
+        return subjectsTaken.contains(subjectToEnroll);
     }
 
     //TODO
