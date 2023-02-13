@@ -10,7 +10,7 @@ import static com.orangeandbronze.enlistment.Days.*;
 public class StudentTest {
 
     static final Schedule DEFAULT_SCHEDULE = new Schedule(MTH, H1000);
-    static final Room DEFAULT_ROOM = new Room("A1706", 45);
+    static final Room DEFAULT_ROOM = new Room("A1706", 45, Set.of());
     @Test
     void enlist_2_sections_no_conflict() { // happy scenario
                     // pseudocode //
@@ -97,7 +97,7 @@ public class StudentTest {
         // New subjects
         Subject subject = new Subject("ABC123", 3, false, Set.of(prereq1, prereq2));
 
-        Section sec = new Section("A", DEFAULT_SCHEDULE, new Room("A1705", 1), subject);
+        Section sec = new Section("A", DEFAULT_SCHEDULE, new Room("A1705", 1, Set.of()), subject);
         // When student1 enlists in the section
         student1.enlist(sec);
         // Then on student2 enlists in the same section, an exception should be thrown
@@ -275,8 +275,8 @@ public class StudentTest {
         Subject labSubject = new Subject("LBSWENG", 2, true, Set.of(prereq1, prereq2));
 
         Section STSWENGS12 = new Section("2401", DEFAULT_SCHEDULE, DEFAULT_ROOM, nonLabSubject1);
-        Section STADVDBS12 = new Section("2501", new Schedule(MTH, H1600), new Room("GK304A", 45), nonLabSubject2);
-        Section LBSWENGS12 = new Section("2601", new Schedule(MTH, H0830), new Room("A1109", 45), labSubject);
+        Section STADVDBS12 = new Section("2501", new Schedule(MTH, H1600), new Room("GK304A", 45, Set.of()), nonLabSubject2);
+        Section LBSWENGS12 = new Section("2601", new Schedule(MTH, H0830), new Room("A1109", 45, Set.of()), labSubject);
 
         student.enlist(STSWENGS12);
         student.enlist(STADVDBS12);
@@ -292,24 +292,6 @@ public class StudentTest {
                 () -> assertEquals(BigDecimal.valueOf(20160).stripTrailingZeros(), studentAssessment)
         );
 
-
-        /* Example assessment:
-         * Student enrolls Subjects A, B and C:
-         * Subject A - 3 Units
-         * Subject B - 2 Units
-         * Subject C - 2 Units, but with lab
-         *
-         * 2000.00 per unit, additional 1000.00 if lab:
-         * Subject A: 6000.00
-         * Subject B: 4000.00
-         * Subject C: 5000.00
-         * total: ₱15000.00
-         * +3000.00 misc. fees = 18000.00
-         * 12% VAT = ₱2160.00
-         *
-         * Expected Total Amount including VAT: ₱20,160.00
-         */
-
     }
 
     @Test
@@ -320,7 +302,7 @@ public class StudentTest {
 
         // Other subject/section in cart
         Subject subject1 = new Subject("SUBJECT1", 23, false, Set.of());
-        Section sec1 = new Section("Z", new Schedule(WS, H1600), new Room("A1901", 45), subject1);
+        Section sec1 = new Section("Z", new Schedule(WS, H1600), new Room("A1901", 45, Set.of()), subject1);
 
         Student student = new Student(1, Set.of(sec1), Set.of(prereq1, prereq2));
 
@@ -330,6 +312,36 @@ public class StudentTest {
 
         // Then the student SHOULD NOT be able to enlist in the section
         assertThrows(RuntimeException.class, () -> student.enlist(sec2));
+    }
+
+    @Test
+    void section_same_room_not_overlap() {
+
+        Subject sub1 = new Subject("SUBJECT1", 3, false, Set.of());
+        Subject sub2 = new Subject("SUBJECT2", 5, false, Set.of());
+
+        Section sec1 = new Section("ABC123", DEFAULT_SCHEDULE, DEFAULT_ROOM,sub1);
+        Section sec2 = new Section("ABC321", new Schedule(WS, H1600), DEFAULT_ROOM,sub2);
+
+        Room room = new Room("A", 35, Set.of(sec1, sec2));
+
+        assertAll(
+                () -> assertTrue(room.getSections().containsAll(List.of(sec1, sec2))),
+                () -> assertEquals(2, room.getSections().size())
+        );
+
+    }
+    @Test
+    void section_same_room_overlap() {
+        Subject sub1 = new Subject("SUBJECT1", 3, false, Set.of());
+        Subject sub2 = new Subject("SUBJECT2", 3, false, Set.of());
+
+        Section sec1 = new Section("ABC123", new Schedule(MTH, H1130), DEFAULT_ROOM, sub1);
+        Section sec2 = new Section("ABC321", new Schedule(MTH, H1200), DEFAULT_ROOM, sub2);
+
+        Room room = new Room("A", 35);
+        room.addSection(sec1);
+        assertThrows(ScheduleConflictException.class, () -> room.addSection(sec2));
     }
 
 }
