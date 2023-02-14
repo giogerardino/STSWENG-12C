@@ -39,7 +39,6 @@ class Subject {
         return new ArrayList<>(preReqSubjects);
     }
     
-    //TODO Change units to floating point
     Float getUnits() {
         return units;
     }

@@ -2,14 +2,14 @@ package com.orangeandbronze.enlistment;
 import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static com.orangeandbronze.enlistment.Period.*;
 import static com.orangeandbronze.enlistment.Days.*;
 
 public class StudentTest {
 
-    static final Schedule DEFAULT_SCHEDULE = new Schedule(MTH, H1000);
+    static final Schedule DEFAULT_SCHEDULE = new Schedule(MTH, LocalTime.of(10,0),LocalTime.of(11,30));
     static final Room DEFAULT_ROOM = new Room("A1706", 45, Set.of());
 
     //Prerequisite subjects
@@ -36,7 +36,7 @@ public class StudentTest {
         Student student = new Student(1, Set.of(), Set.of(prereq1,prereq2), DEFAULT_DEGREE);
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subj1prereq);
-        Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subj2prereq);
+        Section sec2 = new Section("B", new Schedule(MTH, LocalTime.of(11,30),LocalTime.of(12,0)), DEFAULT_ROOM,subj2prereq);
 
         // When student enlists in both sections
         student.enlist(sec1);
@@ -127,7 +127,7 @@ public class StudentTest {
 
        
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subj1prereq);
-        Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subj2prereq);
+        Section sec2 = new Section("B", new Schedule(MTH, LocalTime.of(8,30),LocalTime.of(10,0)), DEFAULT_ROOM, subj2prereq);
 
         student.enlist(sec1);
         assertThrows(RuntimeException.class, () -> student.cancelSection(sec2));
@@ -141,7 +141,7 @@ public class StudentTest {
         Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2), DEFAULT_DEGREE);
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subj1prereq);
-        Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subj2prereq);
+        Section sec2 = new Section("B", new Schedule(MTH, LocalTime.of(8,30),LocalTime.of(10,0)), DEFAULT_ROOM, subj2prereq);
 
         // When student enlists in 2 sections and NOT SAME subject
         student.enlist(sec1);
@@ -165,7 +165,7 @@ public class StudentTest {
         Subject subject2 = new Subject("SUBJECT1PREREQ", 3, false, Set.of(prereq1, prereq2));
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subject1);
-        Section sec2 = new Section("B", new Schedule(MTH, H0830), DEFAULT_ROOM, subject2);
+        Section sec2 = new Section("B", new Schedule(MTH,  LocalTime.of(8,30),LocalTime.of(10,0)), DEFAULT_ROOM, subject2);
 
         // When student enlists in a section of a certain subject
         student.enlist(sec1);
@@ -184,7 +184,7 @@ public class StudentTest {
         Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2), DEFAULT_DEGREE);
 
         Section sec1 = new Section("A", DEFAULT_SCHEDULE, DEFAULT_ROOM, subj1prereq);
-        Section sec2 = new Section("A", new Schedule(MTH, H0830), DEFAULT_ROOM, subj2prereq);
+        Section sec2 = new Section("A", new Schedule(MTH,  LocalTime.of(8,30),LocalTime.of(10,0)), DEFAULT_ROOM, subj2prereq);
 
         // When student enlists in a section of a certain subject with TAKEN prerequisites
         student.enlist(sec1);
@@ -238,8 +238,8 @@ public class StudentTest {
         Subject labSubject = new Subject("LBSWENG", 2, true, Set.of(prereq1, prereq2));
 
         Section STSWENGS12 = new Section("2401", DEFAULT_SCHEDULE, DEFAULT_ROOM, nonLabSubject1);
-        Section STADVDBS12 = new Section("2501", new Schedule(MTH, H1600), new Room("GK304A", 45, Set.of()), nonLabSubject2);
-        Section LBSWENGS12 = new Section("2601", new Schedule(MTH, H0830), new Room("A1109", 45, Set.of()), labSubject);
+        Section STADVDBS12 = new Section("2501", new Schedule(MTH,  LocalTime.of(16,0),LocalTime.of(17,30)), new Room("GK304A", 45, Set.of()), nonLabSubject2);
+        Section LBSWENGS12 = new Section("2601", new Schedule(MTH,  LocalTime.of(8,30),LocalTime.of(10,0)), new Room("A1109", 45, Set.of()), labSubject);
 
         DegreeProgram degreeProgram = new DegreeProgram("SAMPLE-DEGREE", Set.of(nonLabSubject1, nonLabSubject2, labSubject));
         Student student = new Student(1, Set.of(), Set.of(prereq1, prereq2), degreeProgram);
@@ -265,7 +265,7 @@ public class StudentTest {
 
         // Other subject/section in cart
         Subject subject1 = new Subject("SUBJECT1", 23, false, Set.of());
-        Section sec1 = new Section("Z", new Schedule(WS, H1600), new Room("A1901", 45, Set.of()), subject1);
+        Section sec1 = new Section("Z", new Schedule(WS, LocalTime.of(16,0),LocalTime.of(17,30)), new Room("A1901", 45, Set.of()), subject1);
 
         // New subjects
         Subject subject2 = new Subject("SUBJECT2", 3, false, Set.of(prereq1, prereq2));
@@ -280,13 +280,13 @@ public class StudentTest {
     }
 
     @Test
-    void section_same_room_schedule_not_overlap() {
+    void section_same_room_sched_not_overlap() {
 
         Subject sub1 = new Subject("SUBJECT1", 3, false, Set.of());
         Subject sub2 = new Subject("SUBJECT2", 5, false, Set.of());
 
         Section sec1 = new Section("ABC123", DEFAULT_SCHEDULE, DEFAULT_ROOM,sub1);
-        Section sec2 = new Section("ABC321", new Schedule(WS, H1600), DEFAULT_ROOM, sub2);
+        Section sec2 = new Section("ABC321", new Schedule(WS,  LocalTime.of(16,0),LocalTime.of(17,30)), DEFAULT_ROOM,sub2);
 
         Room room = new Room("A", 35, Set.of(sec1, sec2));
 
@@ -298,20 +298,20 @@ public class StudentTest {
     }
 
     @Test
-    void section_same_room_schedule_overlap() { //negative scenario
+    void section_same_room_sched_overlap() { //negative scenario
         Subject sub1 = new Subject("SUBJECT1", 3, false, Set.of());
         Subject sub2 = new Subject("SUBJECT2", 3, false, Set.of());
 
         Room room = new Room("A1706", 45, Set.of());
 
-        Section sec1 = new Section("ABC123", new Schedule(MTH, H1130), room, sub1);
-        Section sec2 = new Section("ABC321", new Schedule(MTH, H1130), room, sub2);
-
+        Section sec1 = new Section("ABC123", DEFAULT_SCHEDULE, room, sub1);
+        Section sec2 = new Section("ABC321", DEFAULT_SCHEDULE, room, sub2);
+        
         room.addSection(sec1);
 
         assertThrows(ScheduleConflictException.class, () -> room.addSection(sec2));
     }
-
+    
     @Test
     void enlist_subject_in_degree_program() {
         // Given a student enlisting in 1 section (with its subject having prerequisites)
@@ -319,7 +319,7 @@ public class StudentTest {
 
         // subj1prereq, subj2prereq, subj3 all part of DEFAULT_DEGREE
         Section sec1 = new Section("ABC123", DEFAULT_SCHEDULE, DEFAULT_ROOM, subj1prereq);
-        Section sec2 = new Section("ABC456", new Schedule(WS, H1600), DEFAULT_ROOM, subj2prereq);
+        Section sec2 = new Section("ABC456", new Schedule(WS, LocalTime.of(16,0),LocalTime.of(17,30)), DEFAULT_ROOM, subj2prereq);
 
         student.enlist(sec1);
         student.enlist(sec2);
@@ -340,7 +340,7 @@ public class StudentTest {
 
         // only subj1prereq is part of DEFAULT_DEGREE
         Section sec1 = new Section("ABC123", DEFAULT_SCHEDULE, DEFAULT_ROOM, subj1prereq);
-        Section sec2 = new Section("ABC456", new Schedule(WS, H1600), DEFAULT_ROOM, subj2);
+        Section sec2 = new Section("ABC456", new Schedule(WS, LocalTime.of(16,0),LocalTime.of(17,30)), DEFAULT_ROOM, subj2);
 
         student.enlist(sec1);
 

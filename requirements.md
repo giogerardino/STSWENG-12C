@@ -46,7 +46,7 @@
   #### Additional Requirements
 
   * [X] A student cannot enlist in more than 24 units.
-  * [ ] No two sections can share the same room if their schedules overlap.
+  * [X] No two sections can share the same room if their schedules overlap.
   * [X] A student belongs to a degree program.
   * [X] A degree program is a collection of subjects that a student may take.
   * [X] A student cannot enroll in section if the subject of the section is not part of the student's degree program.
@@ -54,10 +54,10 @@
 
   #### Urgent Change Request - Schedules
 
-  * [ ] A student may not enlist in a section if its schedule overlaps with the schedule of any of its currently enlisted sections.
-  * [ ] Periods may be of any duration of 30-min increments, w/in the hours of 8:30am - 5:30pm.
-  * [ ] Periods may begin and may end at the top of each hour (9:00, 10:00, 11:00...) or at the bottom of each hour (9:30, 10:30, 11:30...).
-  * [ ] End of a period may not be on or before the start of the period.
+  * [X] A student may not enlist in a section if its schedule overlaps with the schedule of any of its currently enlisted sections.
+  * [X] Periods may be of any duration of 30-min increments, w/in the hours of 8:30am - 5:30pm.
+  * [X] Periods may begin and may end at the top of each hour (9:00, 10:00, 11:00...) or at the bottom of each hour (9:30, 10:30, 11:30...).
+  * [X] End of a period may not be on or before the start of the period.
 
     * Examples
       * Valid Periods

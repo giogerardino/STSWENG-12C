@@ -9,6 +9,7 @@ class Room {
     private final String roomName;
     private final int capacity;
     private final Collection<Section> sections = new HashSet<>();
+    //private final HashMap timeslot = new HashMap<>();
 
     Room(String roomName, int capacity, Collection<Section> sections) {
         Validate.notNull(roomName);
@@ -26,10 +27,13 @@ class Room {
     }
     void addSection(Section newSection) {
 
-        // loop through all current sections, check for same sched
+        Validate.notNull(newSection);
+
+        // loop through all current sections, check for conflicts
         sections.forEach(currSection -> currSection.checkForConflict(newSection));
-        
-        sections.add(newSection);
+
+        this.sections.add(newSection);
+        newSection.addSectionEnlistment();
     }
     int getCapacity() {
         return capacity;
@@ -58,3 +62,4 @@ class Room {
         return Objects.hash(roomName);
     }
 }
+
