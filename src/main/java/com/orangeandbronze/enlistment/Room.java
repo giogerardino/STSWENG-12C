@@ -9,6 +9,7 @@ class Room {
     private final String roomName;
     private final int capacity;
     private final Collection<Section> sections = new HashSet<>();
+    private final HashMap timeslot = new HashMap<>();
 
     Room(String roomName, int capacity, Collection<Section> sections) {
         Validate.notNull(roomName);
@@ -25,7 +26,14 @@ class Room {
         this(roomName,capacity, Collections.emptyList());
     }
     void addSection(Section section) {
-        sections.add(section);
+
+        Validate.notNull(section);
+
+        // loop through all current sections, check for conflicts
+        sections.forEach(currSection -> currSection.checkForConflict(section));
+
+        this.sections.add(section);
+        section.addSectionEnlistment();
     }
     int getCapacity() {
         return capacity;

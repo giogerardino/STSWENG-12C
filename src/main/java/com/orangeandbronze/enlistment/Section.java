@@ -33,10 +33,10 @@ class Section{
     }
 
     void checkForConflict (Section other) {
-        if (this.schedule.equals(other.schedule) && this.room.equals(other.room)) {
-            throw new ScheduleConflictException("this section " + this + 
-                " has the same schedule as other section " + other +
-                " at schedule " + schedule + ", " + room);
+        if (this.schedule.overlapsWith(other.schedule) && this.room.equals(other.room)) {
+            throw new ScheduleConflictException("This section " + this +
+                " overlaps with " + other +
+                " at schedule " + this.schedule + ", " + this.room);
         }
     }
 
