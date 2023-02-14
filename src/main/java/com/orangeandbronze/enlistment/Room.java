@@ -24,8 +24,12 @@ class Room {
     Room(String roomName, int capacity) {
         this(roomName,capacity, Collections.emptyList());
     }
-    void addSection(Section section) {
-        sections.add(section);
+    void addSection(Section newSection) {
+
+        // loop through all current sections, check for same sched
+        sections.forEach(currSection -> currSection.checkForConflict(newSection));
+        
+        sections.add(newSection);
     }
     int getCapacity() {
         return capacity;

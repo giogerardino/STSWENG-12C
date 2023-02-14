@@ -8,11 +8,12 @@ class Student{
     private final int studentNum;
     private final Collection<Section> sections = new HashSet<>();
     private final Collection<Subject> subjectsTaken;
+    private final DegreeProgram degreeProgram;
 
     private final double MAX_UNITS = 24.0;
 
     //class constructor
-    Student(int studentNum, Collection<Section> sections, Collection<Subject> subjectsTaken){
+    Student(int studentNum, Collection<Section> sections, Collection<Subject> subjectsTaken, DegreeProgram degreeProgram){
 
         if(studentNum < 0){
             throw new IllegalArgumentException(
@@ -24,7 +25,10 @@ class Student{
             throw new NullPointerException();
         }
 
+        Validate.notNull(degreeProgram);
+
         this.studentNum = studentNum;
+        this.degreeProgram = degreeProgram;
         this.sections.addAll(sections);
         this.sections.removeIf(Objects::isNull);
 
@@ -36,8 +40,8 @@ class Student{
     }
 
     //Another constructor
-    Student (int studentNumber) {
-        this(studentNumber, Collections.emptyList(), Collections.emptyList());
+    Student (int studentNumber, DegreeProgram degreeProgram) {
+        this(studentNumber, Collections.emptyList(), Collections.emptyList(), degreeProgram);
     }
 
     /** Enlist a student to a section */
@@ -52,6 +56,9 @@ class Student{
 
         // check if all pre-requisites are taken
         sections.forEach(currSection -> currSection.checkAllPreRequisitesTaken(this));
+
+        // check if subject of newSection is part of student's degree
+        newSection.checkIfPartOfDegree(degreeProgram);
 
         if (this.willOverload(newSection.getSubject().getUnits())) {
             throw new RuntimeException("Student cannot enroll in " + newSection + " as they will exceed 24.0 units.");

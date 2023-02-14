@@ -80,6 +80,13 @@ class Section{
         }
     }
 
+    void checkIfPartOfDegree (DegreeProgram degreeProgram) {
+        ArrayList<Subject> subjects = (ArrayList<Subject>) degreeProgram.getSubjects();
+        if (!subjects.contains(this.subject)) {
+            throw new IllegalArgumentException("subject " + this.subject + " is not part of degree program: " + degreeProgram);
+        }
+    }
+
     @Override
     public String toString() {
         return sectionID;
