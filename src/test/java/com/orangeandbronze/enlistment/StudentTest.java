@@ -280,7 +280,7 @@ public class StudentTest {
     }
 
     @Test
-    void section_same_room_not_overlap() {
+    void section_same_room_schedule_not_overlap() {
 
         Subject sub1 = new Subject("SUBJECT1", 3, false, Set.of());
         Subject sub2 = new Subject("SUBJECT2", 5, false, Set.of());
@@ -297,16 +297,16 @@ public class StudentTest {
 
     }
 
-    //TODO: fix this with new code for period
     @Test
-    void section_same_room_overlap() {
+    void section_same_room_schedule_overlap() { //negative scenario
         Subject sub1 = new Subject("SUBJECT1", 3, false, Set.of());
         Subject sub2 = new Subject("SUBJECT2", 3, false, Set.of());
 
-        Section sec1 = new Section("ABC123", new Schedule(MTH, H1130), DEFAULT_ROOM, sub1);
-        Section sec2 = new Section("ABC321", new Schedule(MTH, H1200), DEFAULT_ROOM, sub2);
+        Room room = new Room("A1706", 45, Set.of());
 
-        Room room = new Room("A", 35);
+        Section sec1 = new Section("ABC123", new Schedule(MTH, H1130), room, sub1);
+        Section sec2 = new Section("ABC321", new Schedule(MTH, H1130), room, sub2);
+
         room.addSection(sec1);
 
         assertThrows(ScheduleConflictException.class, () -> room.addSection(sec2));
