@@ -29,7 +29,7 @@ class Section{
     }
 
     boolean hasConflict (Section other) {
-        return this.schedule.equals(other.schedule);
+        return this.schedule.overlapsWith(other.schedule);
     }
 
     void checkForConflict (Section other) {
